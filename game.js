@@ -1,5 +1,6 @@
 var canvas,context,snake,prey,size=16,score=0,scoreBoard;
-var colors=['#ff0000','#6FA2FF','#ffff00','#FFBFEF','#14d160','#BBFF78','#C5B8FF'],colorSelect="#BBFF78",starting;
+var colors=['#ff0000','#6FA2FF','#ffff00','#FFBFEF','#14d160','#BBFF78','#C5B8FF','#df613f','#e0522c','#256c14'],colorSelect="#BBFF78",starting;
+var left,right,up,down;
 
 window.onload=function(){
 	canvas=document.getElementById("gameWindow");
@@ -11,6 +12,23 @@ window.onload=function(){
 	prey=new Food();
 	setInterval(update,1000/10);
 	starting=true;
+	score=0;
+	left=false;
+	right=true;
+	down=false;
+	up=false;
+}
+function init(){
+	starting=true;
+	score=0;
+	snake=new Snake();
+	snake.tailX.push(0);
+	snake.tailY.push(0);
+	prey=new Food();
+	left=false;
+	right=true;
+	down=false;
+	up=false;
 }
 class Food{
 	constructor(){
@@ -80,7 +98,7 @@ function update(){
 			prey=new Food();
 			score+=1;
 			snake.length++;
-			colorSelect=colors[Math.round(Math.random()*6)];
+			colorSelect=colors[Math.round(Math.random()*9)];
 			snake.tailX.push(snake.xPos);
 			snake.tailY.push(snake.yPos);
 		}
@@ -89,26 +107,86 @@ function update(){
 		scoreBoard.innerHTML="SCORE: "+score;
 		if(collision()){
 			context.fillStyle="white";
-			context.fillText("GAME OVER",canvas.width-640/2,canvas.height-480/2);
+			context.font="20pt sans-serif";
+			context.fillText("GAME OVER",canvas.width-640/2-50,canvas.height-480/2+10);
 			starting=false;
 		}
 	}
 }
 window.addEventListener('keydown',(event)=>{
-	if((event.keyCode==65 || event.keyCode==37) && snake.xVel==0){
+	if((event.keyCode==65 || event.keyCode==37) && !right){
 		snake.xVel=-snake.snakeSpeed;
 		snake.yVel=0;
+		left=true;
+		right=false;
+		down=false;
+		up=false;
 	}//A
-	else if((event.keyCode==68 || event.keyCode==39) && snake.xVel==0){
+	else if((event.keyCode==68 || event.keyCode==39) && !left){
 		snake.xVel=snake.snakeSpeed;
 		snake.yVel=0;
+		left=false;
+		right=true;
+		down=false;
+		up=false;
 	}//D
-	else if((event.keyCode==83 || event.keyCode==40) && snake.yVel==0){
+	else if((event.keyCode==83 || event.keyCode==40) && !up){
 		snake.xVel=0;
 		snake.yVel=snake.snakeSpeed;
+		left=false;
+		right=false;
+		down=true;
+		up=false;
 	}//S
-	else if((event.keyCode==87 || event.keyCode==38) && snake.yVel==0){
+	else if((event.keyCode==87 || event.keyCode==38) && !down){
 		snake.xVel=0;
 		snake.yVel=-snake.snakeSpeed;
+		left=false;
+		right=false;
+		down=false;
+		up=true;
 	}//W
 });
+function up(){
+	//if(!down){
+		snake.xVel=0;
+		snake.yVel=-snake.snakeSpeed;
+		left=false;
+		right=false;
+		down=false;
+		up=true;
+	//}
+}
+function down(){
+	//if(!up){
+		snake.xVel=0;
+		snake.yVel=-snake.snakeSpeed;
+		left=false;
+		right=false;
+		down=true;
+		up=false;
+	//}
+}
+function left(){
+	//if(!right){
+		snake.xVel=-snake.snakeSpeed;
+		snake.yVel=0;
+		left=true;
+		right=false;
+		down=false;
+		up=false;
+	//}
+}
+function right(){
+	//if(!left){
+		snake.xVel=snake.snakeSpeed;
+		snake.yVel=0;
+		left=false;
+		right=true;
+		down=false;
+		up=false;
+	//}
+}
+function refresh(){
+	init();
+}

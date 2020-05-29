@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1, maximum-scale=1"/>
+		<title>The vintage snake game</title>
+		<meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover, charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="game.css"/>
+		<script type="text/javascript" src="game.js"></script>
+	</head>
+	<body>
+		<img src="img/title.png" alt="<h1>Hungry Snake</h1>"/>
+		<div id="intro">
+			<h3>Introduction:</h3>
+			This is a retro-style snake game! You are a new born snake hungry for food!</br>
+			The game is based on a proverb "The more you eat, the more you grow!".
+			<h3>Controls:</h3>
+			<ul>
+				<li>Up Arrow Key or W    = Move Upwards</li>
+				<li>Down Arrow Key  or S = Move Downwards</li>
+				<li>Left Arrow Key  or A = Move Leftwards</li>
+				<li>Right Arrow Key or D = Move Rightwards</li>
+			</ul>
+			<h3>Rules:</h3>
+		Once you move forwards in a direction, you cannot move backwards unless you take a round turn.</br>
+		If you hit the surrounding walls or try to eat yourself, you lose.
+		</div>
+		<div id="game">
+			<canvas width="640" height="480" id="gameWindow"></canvas>
+			<div id="score"></div>
+			<button id="refresh" type="button" onclick="refresh()"></button>
+		</div>
+	</body>
+</html>

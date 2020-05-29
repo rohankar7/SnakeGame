@@ -1,5 +1,31 @@
 body{
+	padding-top: 100px;
 	font-family: sans-serif;
 	font-size: 30px;
 	text-align: center;
+	background: #85b7f9;
+}
+button{
+	margin-left: 25px;
+	height: 69px;
+	width: 69px;
+	background: url('img/refresh.png');
+	border: solid 5px #70a6ee;
+}
+canvas{
+	border: solid 5px #70a6ee;
+}
+#intro{
+	padding-left: 20px;
+	float:left;
+	width: 45%;
+	text-align: left;
+	font-size: 25px;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+#game{
+	margin-top: 20px;
+	float: right;
+	width: 50%;
 }
