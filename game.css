@@ -9,7 +9,7 @@ button{
 	margin-left: 25px;
 	height: 69px;
 	width: 69px;
-	background: url('img/refresh.png');
+	background: url('refresh.png');
 	border: solid 5px #70a6ee;
 }
 canvas{
